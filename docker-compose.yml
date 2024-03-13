@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: Aishwary007
+      DB_NAME: grocery_app
+      JWT_SECRET: iLove123908HIAish@4$
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Aishwary007
+      MYSQL_DATABASE: grocery_app
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
